@@ -20,13 +20,14 @@ class ProductsGrid extends StatelessWidget {
           childAspectRatio: 3 / 2,
           crossAxisSpacing: 10,
           mainAxisSpacing: 10),
-      itemBuilder: (ctx, i) => ChangeNotifierProvider(
-        create: (c) => products[i],
+      itemBuilder: (ctx, i) => ChangeNotifierProvider.value(
+        // create: (c) => products[i], // Whenever you reuse an existing object or Use this without .value if data you are accessing will not be associated with grid or list.
+        value: products[i],
         child: ProductItem(
-          // products[i].id,
-          // products[i].title,
-          // products[i].imageUrl,
-        ),
+            // products[i].id,
+            // products[i].title,
+            // products[i].imageUrl,
+            ),
       ),
       padding: const EdgeInsets.all(10.0),
       itemCount: products.length,

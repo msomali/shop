@@ -32,14 +32,29 @@ class ProductItem extends StatelessWidget {
           ),
         ),
         footer: GridTileBar(
-          leading: IconButton(
-            icon: Icon(
-              product.isFavourite ? Icons.favorite : Icons.favorite_border,
-              color: Theme.of(context).accentColor,
+          // leading: IconButton(
+          //   icon: Icon(
+          //     product.isFavourite ? Icons.favorite : Icons.favorite_border,
+          //     color: Theme.of(context).accentColor,
+          //   ),
+          //   onPressed: () {
+          //     product.toggleFavouriteStatus();
+          //   },
+          // ),
+          // Alternative to Provider. Consumer used to update parts of the Widget rather than Provider
+          leading: Consumer<Product>(
+            // Child is added for the parts that you dont want to change when Widget renders. Consumer can also be used in substitute of Provider.
+            builder: (ctx, product, child) => IconButton(
+              icon: Icon(
+                product.isFavourite ? Icons.favorite : Icons.favorite_border,
+                // label: child,
+                color: Theme.of(context).accentColor,
+              ),
+              onPressed: () {
+                product.toggleFavouriteStatus();
+              },
             ),
-            onPressed: () {
-              product.toggleFavouriteStatus();
-            },
+            // child: Text('Never changes!'),
           ),
           backgroundColor: Colors.black87,
           title: Text(
